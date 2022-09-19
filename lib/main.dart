@@ -2,7 +2,6 @@ import 'package:cart_provider_demo/models/carrinho.dart';
 import 'package:cart_provider_demo/pages/carrinho/carrinho-page.dart';
 import 'package:cart_provider_demo/pages/catalogo/catalogo-page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
