@@ -4,8 +4,16 @@ import 'package:flutter/material.dart';
 
 class CatalogoItem extends StatelessWidget {
   final Item item;
+  void Function(Item) onAddItem;
+  final CarrinhoModel carrinho;
 
-  const CatalogoItem({Key? key, required this.item}) : super(key: key);
+  CatalogoItem(
+      {Key? key,
+      required this.item,
+      required this.onAddItem,
+      required this.carrinho})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     print('BUILD: CatalogoItem');
@@ -66,7 +74,11 @@ class CatalogoItem extends StatelessWidget {
               const SizedBox(
                 width: 30,
               ),
-              _AddButton(item: item),
+              _AddButton(
+                item: item,
+                onAddItem: onAddItem,
+                carrinho: carrinho,
+              ),
             ],
           ),
         ],
@@ -77,15 +89,33 @@ class CatalogoItem extends StatelessWidget {
 
 class _AddButton extends StatelessWidget {
   final Item item;
-  const _AddButton({Key? key, required this.item}) : super(key: key);
+  void Function(Item) onAddItem;
+  final CarrinhoModel carrinho;
+  _AddButton(
+      {Key? key,
+      required this.item,
+      required this.onAddItem,
+      required this.carrinho})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     print('BUILD: _AddButton');
 
+    bool adicionado = carrinho.items.contains(item);
+
     return IconButton(
-      icon: const Icon(Icons.add_shopping_cart),
-      onPressed: () {},
+      icon: adicionado
+          ? const Icon(
+              Icons.check,
+              color: Colors.green,
+            )
+          : const Icon(Icons.add_shopping_cart),
+      onPressed: adicionado
+          ? null
+          : () {
+              onAddItem(item);
+            },
     );
   }
 }
