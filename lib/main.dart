@@ -13,21 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CarrinhoModel(),
-      builder: (context, _) {
-        return MaterialApp(
-          title: 'Flutter Demo',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.deepPurple,
-          ),
-          initialRoute: '/',
-          routes: {
-            '/': (context) => const CatalogoPage(),
-            '/carrinho': (context) => const CarrinhoPage(),
-          },
-        );
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const CatalogoPage(),
+        '/carrinho': (context) => const CarrinhoPage(),
       },
     );
   }

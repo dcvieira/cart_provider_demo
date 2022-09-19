@@ -1,8 +1,6 @@
 import 'package:cart_provider_demo/pages/carrinho/carrinho_lista.dart';
 import 'package:cart_provider_demo/pages/carrinho/carrinho_total.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CarrinhoPage extends StatelessWidget {
   const CarrinhoPage({Key? key}) : super(key: key);

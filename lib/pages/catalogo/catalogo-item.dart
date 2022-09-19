@@ -1,7 +1,6 @@
 import 'package:cart_provider_demo/models/carrinho.dart';
 import 'package:cart_provider_demo/models/catalogo.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CatalogoItem extends StatelessWidget {
   final Item item;
@@ -84,24 +83,9 @@ class _AddButton extends StatelessWidget {
   Widget build(BuildContext context) {
     print('BUILD: _AddButton');
 
-    var adicionado = context.select<CarrinhoModel, bool>(
-      // Here, we are only interested whether [item] is inside the cart.
-      (car) => car.items.contains(item),
-    );
-
     return IconButton(
-      icon: adicionado
-          ? const Icon(
-              Icons.check,
-              color: Colors.green,
-            )
-          : const Icon(Icons.add_shopping_cart),
-      onPressed: adicionado
-          ? null
-          : () {
-              var carrinho = context.read<CarrinhoModel>();
-              carrinho.add(item);
-            },
+      icon: const Icon(Icons.add_shopping_cart),
+      onPressed: () {},
     );
   }
 }

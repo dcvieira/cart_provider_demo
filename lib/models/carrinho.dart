@@ -1,20 +1,16 @@
-import 'package:flutter/material.dart';
-
 import 'catalogo.dart';
 
-class CarrinhoModel extends ChangeNotifier {
+class CarrinhoModel {
   final List<Item> _items = [];
 
   List<Item> get items => _items;
 
   void add(Item item) {
     _items.add(item);
-    notifyListeners();
   }
 
   void remove(Item item) {
     _items.remove(item);
-    notifyListeners();
   }
 
   int get totalPrice =>
