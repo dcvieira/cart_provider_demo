@@ -13,14 +13,12 @@ class CatalogoPage extends StatefulWidget {
 }
 
 class _CatalogoPageState extends State<CatalogoPage> {
-  final CarrinhoModel carrinho = CarrinhoModel();
-
   @override
   Widget build(BuildContext context) {
     print('BUILD: CatalogoPage');
 
     return Scaffold(
-      appBar: CatalogoAppBar(carrinho: carrinho),
+      appBar: CatalogoAppBar(),
       body: GridView.count(
           crossAxisCount: 2,
           childAspectRatio: .63,
@@ -28,18 +26,8 @@ class _CatalogoPageState extends State<CatalogoPage> {
           mainAxisSpacing: 4.0,
           crossAxisSpacing: 10,
           children: CatalogoModel.items.map((Item item) {
-            return CatalogoItem(
-              item: item,
-              onAddItem: _addItem,
-              carrinho: carrinho,
-            );
+            return CatalogoItem(item: item);
           }).toList()),
     );
-  }
-
-  void _addItem(Item item) {
-    setState(() {
-      carrinho.add(item);
-    });
   }
 }
