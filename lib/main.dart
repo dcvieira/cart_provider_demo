@@ -1,4 +1,3 @@
-import 'package:cart_provider_demo/models/carrinho.dart';
 import 'package:cart_provider_demo/pages/carrinho/carrinho_page.dart';
 import 'package:cart_provider_demo/pages/catalogo/catalogo_page.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +14,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final CarrinhoModel carrinho = CarrinhoModel();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
