@@ -1,15 +1,22 @@
 import 'package:cart_provider_demo/models/carrinho.dart';
 import 'package:cart_provider_demo/models/catalogo.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CatalogoItem extends StatelessWidget {
   final Item item;
+  final CarrinhoModel carrinho;
+  final void Function(Item item) onCarrinhoAdd;
 
-  const CatalogoItem({Key? key, required this.item}) : super(key: key);
+  const CatalogoItem(
+      {Key? key,
+      required this.item,
+      required this.carrinho,
+      required this.onCarrinhoAdd})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    print('BUILD: CatalogoItem');
+    print('BUILD: CatalogoItem ${item.id}');
 
     return Container(
       decoration: BoxDecoration(
@@ -67,7 +74,11 @@ class CatalogoItem extends StatelessWidget {
               const SizedBox(
                 width: 30,
               ),
-              _AddButton(item: item),
+              _AddButton(
+                item: item,
+                carrinho: carrinho,
+                onCarrinhoAdd: onCarrinhoAdd,
+              ),
             ],
           ),
         ],
@@ -78,16 +89,21 @@ class CatalogoItem extends StatelessWidget {
 
 class _AddButton extends StatelessWidget {
   final Item item;
-  const _AddButton({Key? key, required this.item}) : super(key: key);
+  final CarrinhoModel carrinho;
+  final void Function(Item item) onCarrinhoAdd;
+
+  const _AddButton(
+      {Key? key,
+      required this.item,
+      required this.carrinho,
+      required this.onCarrinhoAdd})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print('BUILD: _AddButton');
+    print('BUILD: _AddButton ${item.id}');
 
-    var adicionado = context.select<CarrinhoModel, bool>(
-      // Here, we are only interested whether [item] is inside the cart.
-      (car) => car.items.contains(item),
-    );
+    var adicionado = carrinho.items.contains(item);
 
     return IconButton(
       icon: adicionado
@@ -99,8 +115,7 @@ class _AddButton extends StatelessWidget {
       onPressed: adicionado
           ? null
           : () {
-              var carrinho = context.read<CarrinhoModel>();
-              carrinho.add(item);
+              onCarrinhoAdd(item);
             },
     );
   }

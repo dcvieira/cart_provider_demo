@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../models/carrinho.dart';
 
 class CatalogoAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final CarrinhoModel carrinho;
+  const CatalogoAppBar({Key? key, required this.carrinho}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     print('BUILD: CatalogoAppBar');
 
-    final carrinho = Provider.of<CarrinhoModel>(context);
     return AppBar(
       title: const Text('Catalogo'),
       actions: [
