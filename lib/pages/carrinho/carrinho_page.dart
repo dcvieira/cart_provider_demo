@@ -1,16 +1,9 @@
-import 'package:cart_provider_demo/models/carrinho.dart';
 import 'package:cart_provider_demo/pages/carrinho/carrinho_lista.dart';
 import 'package:cart_provider_demo/pages/carrinho/carrinho_total.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/catalogo.dart';
-
 class CarrinhoPage extends StatelessWidget {
-  final CarrinhoModel carrinho;
-  final void Function(Item item) onCarrinhoRemove;
-  const CarrinhoPage(
-      {Key? key, required this.carrinho, required this.onCarrinhoRemove})
-      : super(key: key);
+  const CarrinhoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +18,11 @@ class CarrinhoPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16),
-              child: CarrinhoLista(
-                carrinho: carrinho,
-                onCarrinhoRemove: onCarrinhoRemove,
-              ),
+              child: CarrinhoLista(),
             ),
           ),
           const Divider(height: 4, color: Colors.black),
-          CarrinhoTotal(
-            carrinho: carrinho,
-          )
+          CarrinhoTotal()
         ],
       ),
     );

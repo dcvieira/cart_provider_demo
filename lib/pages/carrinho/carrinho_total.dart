@@ -1,9 +1,7 @@
-import 'package:cart_provider_demo/models/carrinho.dart';
 import 'package:flutter/material.dart';
 
 class CarrinhoTotal extends StatelessWidget {
-  final CarrinhoModel carrinho;
-  const CarrinhoTotal({Key? key, required this.carrinho}) : super(key: key);
+  const CarrinhoTotal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +14,7 @@ class CarrinhoTotal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'R\$${carrinho.totalPrice}',
+              'R\$',
               style: const TextStyle(fontSize: 48, fontWeight: FontWeight.w300),
             ),
             const SizedBox(width: 24),

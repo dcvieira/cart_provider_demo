@@ -1,18 +1,13 @@
-import 'package:cart_provider_demo/models/carrinho.dart';
 import 'package:cart_provider_demo/models/catalogo.dart';
 import 'package:flutter/material.dart';
 
 class CatalogoItem extends StatelessWidget {
   final Item item;
-  final CarrinhoModel carrinho;
-  final void Function(Item item) onCarrinhoAdd;
 
-  const CatalogoItem(
-      {Key? key,
-      required this.item,
-      required this.carrinho,
-      required this.onCarrinhoAdd})
-      : super(key: key);
+  const CatalogoItem({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,8 +71,6 @@ class CatalogoItem extends StatelessWidget {
               ),
               _AddButton(
                 item: item,
-                carrinho: carrinho,
-                onCarrinhoAdd: onCarrinhoAdd,
               ),
             ],
           ),
@@ -89,21 +82,17 @@ class CatalogoItem extends StatelessWidget {
 
 class _AddButton extends StatelessWidget {
   final Item item;
-  final CarrinhoModel carrinho;
-  final void Function(Item item) onCarrinhoAdd;
 
-  const _AddButton(
-      {Key? key,
-      required this.item,
-      required this.carrinho,
-      required this.onCarrinhoAdd})
-      : super(key: key);
+  const _AddButton({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     print('BUILD: _AddButton ${item.id}');
 
-    var adicionado = carrinho.items.contains(item);
+    var adicionado = false;
 
     return IconButton(
       icon: adicionado
@@ -112,11 +101,7 @@ class _AddButton extends StatelessWidget {
               color: Colors.green,
             )
           : const Icon(Icons.add_shopping_cart),
-      onPressed: adicionado
-          ? null
-          : () {
-              onCarrinhoAdd(item);
-            },
+      onPressed: adicionado ? null : () {},
     );
   }
 }
